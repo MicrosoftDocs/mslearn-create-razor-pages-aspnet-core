@@ -10,6 +10,8 @@ builder.Services.AddRazorPages();
 builder.Services.AddDbContext<PizzaContext>(options =>
     options.UseSqlite("Data Source=ContosoPizza.db"));
 
+builder.Services.AddScoped<PizzaService>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
