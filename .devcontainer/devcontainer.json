@@ -1,0 +1,11 @@
+{
+	"name": "C# (.NET)",
+	"image": "mcr.microsoft.com/devcontainers/dotnet:0-7.0",
+
+	"features": {
+		"ghcr.io/warrenbuckley/codespace-features/sqlite:latest": {}
+	},
+
+	"customizations": {
+	}
+}
