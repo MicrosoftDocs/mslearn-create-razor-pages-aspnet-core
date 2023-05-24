@@ -1,10 +1,13 @@
 ﻿@page
 @model IndexModel
 @{
-    ViewData["Title"] = "Home page";
+    ViewData["Title"] = "Pizza los michos";
+    TimeSpan vlTimespan = DateTime.Now - new DateTime(1960,1,1);
+
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <h2 >Desde: @vlTimespan.TotalDays</h2>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
