@@ -1,0 +1,71 @@
+﻿@page
+@model ContosoPizza.Pages.PizzaListModel
+@{
+    ViewData["Title"] = "Pizza List 🍕";
+}
+
+<h1>Pizza List 🍕</h1>
+
+<form method="post">
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="NewPizza.Name" class="control-label"></label>
+    <input asp-for="NewPizza.Name" class="form-control" />
+    <span asp-validation-for="NewPizza.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Size" class="control-label"></label>
+    <select asp-for="NewPizza.Size" class="form-control" id="PizzaSize">
+        <option value="">-- Select Size --</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+    </select>
+    <span asp-validation-for="NewPizza.Size" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        <input class="form-check-input" asp-for="NewPizza.IsGlutenFree" /> @Html.DisplayNameFor(model => model.NewPizza.IsGlutenFree)
+    </label>
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Price" class="control-label"></label>
+    <input asp-for="NewPizza.Price" class="form-control" />
+    <span asp-validation-for="NewPizza.Price" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>
+</form>
+
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Size</th>
+            <th scope="col">Gluten Free</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var pizza in Model.PizzaList)
+    {
+        <tr>
+            <td>@pizza.Name</td>
+            <td>@($"{pizza.Price:C}")</td>
+            <td>@pizza.Size</td>
+            <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
