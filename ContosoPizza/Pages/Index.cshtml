@@ -1,10 +1,14 @@
 ﻿@page
+@using System.ComponentModel.DataAnnotations;
+
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
+    TimeSpan timeInBusiness = DateTime.Now - new DateTime(2023, 9, 28, 9, 13,0);
+    
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Welcome to first web - site AlexSnow</h1>
+    <p class="lead"> С момента начала проекта прошло, а ты ни хрена не сделал целых @Convert.ToInt32(timeInBusiness.TotalMinutes) minutes!</p>
 </div>
