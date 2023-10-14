@@ -1,4 +1,6 @@
-﻿using ContosoPizza.Data;
+﻿#nullable disable
+
+using ContosoPizza.Data;
 using ContosoPizza.Models;
 
 namespace ContosoPizza.Services
