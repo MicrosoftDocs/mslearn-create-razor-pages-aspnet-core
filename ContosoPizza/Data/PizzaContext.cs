@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿#nullable disable
+
+using Microsoft.EntityFrameworkCore;
 
 namespace ContosoPizza.Data
 {
