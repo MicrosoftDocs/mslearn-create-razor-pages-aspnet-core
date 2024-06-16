@@ -32,5 +32,12 @@ public IActionResult OnPost()
 
     return RedirectToAction("Get");
 }
+
+public IActionResult OnPostDelete(int id)
+{
+    _service.DeletePizza(id);
+
+    return RedirectToAction("Get");
+}
 }
 }
