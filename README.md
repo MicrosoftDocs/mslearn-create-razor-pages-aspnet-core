@@ -6,6 +6,9 @@ Welcome! This is the starter app for the [Create a web UI with ASP.NET Core](htt
 
 The completed version of this module is available on the `solution` branch of this repo.
 
+Implementing Authentication and Authorization
+Guide comes here
+
 ## Contributing
 
 This project welcomes contributions and suggestions.  Most contributions require you to agree to a
