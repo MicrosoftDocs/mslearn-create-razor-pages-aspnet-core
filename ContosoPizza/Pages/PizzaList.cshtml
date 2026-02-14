@@ -1,0 +1,84 @@
+﻿@page
+@model ContosoPizza.Pages.PizzaListModel
+@{
+    ViewData["Title"] = "Pizza List 🍕";
+}
+
+<h1>Pizza List 🍕</h1>
+
+<!-- New Pizza form will go here -->
+<form method="post">
+@* The asp-validation-summary attribute is used to display validation errors for the entire model. *@
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+<div class="form-group">
+    <label asp-for="NewPizza.Name" class="control-label"></label>
+    <input asp-for="NewPizza.Name" class="form-control" />
+    <span asp-validation-for="NewPizza.Name" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Size" class="control-label"></label>
+    @* Each form field (<input> and <select> elements) and each <label> is bound to the corresponding NewPizza property
+    using the asp-for attribute. *@
+    <select asp-for="NewPizza.Size" class="form-control" id="PizzaSize">
+        <option value="">-- Select Size --</option>
+        <option value="Small">Small</option>
+        <option value="Medium">Medium</option>
+        <option value="Large">Large</option>
+    </select>
+    @* The asp-validation-for attribute is used to display any validation errors for each form field. *@
+    <span asp-validation-for="NewPizza.Size" class="text-danger"></span>
+</div>
+<div class="form-group form-check">
+    <label class="form-check-label">
+        @* The @Html.DisplayNameFor method is used to display the display name for the IsGlutenFree property.
+        This is a Razor helper method that's used to display the display name for a property.
+        Doing the label this way ensures that the checkbox is selected when the user clicks the label. *@
+        <input class="form-check-input" asp-for="NewPizza.IsGlutenFree" /> @Html.DisplayNameFor(model => model.NewPizza.IsGlutenFree)
+    </label>
+</div>
+<div class="form-group">
+    <label asp-for="NewPizza.Price" class="control-label"></label>
+    <input asp-for="NewPizza.Price" class="form-control" />
+    <span asp-validation-for="NewPizza.Price" class="text-danger"></span>
+</div>
+<div class="form-group">
+    @* A submit button labeled Create is added to the form to post the form data to the server. At runtime, when the
+    user selects this Create button, the browser sends the form as an HTTP POST request to the server. *@
+    <input type="submit" value="Create" class="btn btn-primary" />
+</div>
+</form>
+
+<!-- List of pizzas will go here -->
+<table class="table mt-5">
+    <thead>
+        <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Size</th>
+            <th scope="col">Gluten Free</th>
+            <th scope="col">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+    @foreach (var pizza in Model.PizzaList)
+    {
+        <tr>
+            <td>@pizza.Name</td>
+            <td>@($"{pizza.Price:C}")</td>
+            <td>@pizza.Size</td>
+            <td>@(pizza.IsGlutenFree ? "✔️" : string.Empty)</td>
+            <td>
+                <form method="post" asp-page-handler="Delete" asp-route-id="@pizza.Id">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+@* This injects the client-side validation scripts into the page. The client-side validation scripts are used to
+validate the user's input before the form is submitted to the server. *@
+@section Scripts {
+<partial name="_ValidationScriptsPartial" />
+}
